@@ -4,12 +4,11 @@ from pageobjects.credentials.LoginPage import LoginPage
 from pageobjects.topmenu.TopMenuPage import TopMenuPage
 
 
-@pytest.mark.regression
-@pytest.mark.smoke
 class TestLogout:
     login_page: LoginPage
     top_menu_page: TopMenuPage
 
+    @pytest.mark.regression
     def test_logout(self):
         self.login_page.go_to_index()
         self.login_page.login("standard_user", "secret_sauce")

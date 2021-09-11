@@ -1,6 +1,6 @@
 import traceback
 
-from selenium.common.exceptions import ElementNotVisibleException
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
@@ -23,7 +23,7 @@ class Page:
         try:
             self._wait_visibility(locator, time_out)
             return True
-        except ElementNotVisibleException:
+        except TimeoutException:
             print(traceback.print_stack())
             return False
 

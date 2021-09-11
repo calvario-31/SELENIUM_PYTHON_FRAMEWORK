@@ -23,7 +23,7 @@ To delete virtual environment called "venv":
 
 ===============================================================
 
-To install requeriments in the virtual env:
+To install requirements in the virtual env:
 
 source venv/Scripts/activate
 
@@ -31,32 +31,15 @@ pip install -r requirements.txt
 
 ===============================================================
 
-We can specify the browser by adding --browser "browser_name"
+rm -r ./tests/resources/reports/
 
-browser names available: "chrome", "firefox", "edge"
 
-Example: pytest -v -s --browser chrome
+pytest -m ${tag_name} -v -s --browser=${browser} --alluredir= ${allure_report_path}
 
-===============================================================
-
-Command to run php travels test only (group):
-
-pytest -m php_travels -v -s
-
-===============================================================
-
-Command to run heroku app test only (group):
-
-$ pytest -m heroku_app -v -s
-
-===============================================================
-
-Command to see allure report:
-
-pytest --alluredir=./my_allure_results
+pytest -m regression -v -s --browser=edge --alluredir=./tests/resources/reports/my-allure-results
 
 ===============================================================
 
 To see allure results:
 
-allure serve ./my_allure_results
+allure serve ./tests/resources/reports/

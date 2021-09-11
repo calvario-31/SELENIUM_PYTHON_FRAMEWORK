@@ -1,3 +1,4 @@
+import allure
 from selenium.webdriver.common.by import By
 
 from pageobjects.Page import Page
@@ -14,14 +15,16 @@ class TopMenuPage(Page):
     def __init__(self, driver):
         super().__init__(driver)
 
+    @allure.step("Login out")
     def logout(self):
         self._open_burger_menu()
-        log.info("clicking on logout button")
+        log.info("Clicking on logout button")
         self._wait_visibility(self._logoutButton).click()
 
+    @allure.step("Opening the burger menu")
     def _open_burger_menu(self):
         self._wait_page_to_load()
-        log.info("opening the burger menu")
+        log.info("Opening the burger menu")
         self._find(self._burgerMenu).click()
 
     def _wait_page_to_load(self):
