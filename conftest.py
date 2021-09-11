@@ -5,8 +5,8 @@ from _pytest.config import hookimpl
 from _pytest.fixtures import fixture
 from selenium.webdriver.remote.webdriver import WebDriver
 
-import utilities.log_manager as log_manager
-from utilities.driver_manager import build_remote_driver, build_local_driver, take_screenshot
+import src.utilities.log_manager as log_manager
+from src.utilities.driver_manager import build_remote_driver, build_local_driver, take_screenshot
 
 driver: WebDriver
 browser: string

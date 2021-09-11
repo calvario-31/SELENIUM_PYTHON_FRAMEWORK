@@ -1,7 +1,7 @@
 import pytest
 
-from pageobjects.credentials.LoginPage import LoginPage
-from pageobjects.topmenu.TopMenuPage import TopMenuPage
+from src.pageobjects.credentials.LoginPage import LoginPage
+from src.pageobjects.topmenu.TopMenuPage import TopMenuPage
 
 
 class TestLogout:

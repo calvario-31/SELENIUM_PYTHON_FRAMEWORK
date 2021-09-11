@@ -50,9 +50,6 @@ def get_logger():
     logger.addHandler(file_handler)
     logger.addHandler(stream_handler)
 
-    logger2 = logging.getLogger("WDM")
-    logger2.setLevel(logging.ERROR)
-
     logger.setLevel(logging.INFO)
 
     return logger

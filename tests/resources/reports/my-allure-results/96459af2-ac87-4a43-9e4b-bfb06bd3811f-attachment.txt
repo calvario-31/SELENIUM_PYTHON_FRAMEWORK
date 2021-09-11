@@ -1,0 +1,8 @@
+INFO     LOG:log_manager.py:26 ------------------------------------------------------------------------------------------
+INFO     LOG:log_manager.py:27 Test: test_logout
+INFO     LOG:log_manager.py:28 ------------------------------------------------------------------------------------------
+INFO     LOG:log_manager.py:15 Building local driver
+INFO     LOG:log_manager.py:15 Starting edge
+INFO     WDM:logger.py:22 ====== WebDriver manager ======
+INFO     WDM:logger.py:12 Trying to download new driver from https://msedgedriver.azureedge.net/93.0.961.38/edgedriver_win64.zip
+INFO     WDM:logger.py:12 Driver has been saved in cache [C:\Users\calvario31\.wdm\drivers\edgedriver\win64\93.0.961.38]
