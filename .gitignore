@@ -1,4 +1,4 @@
 .idea/
 __pycache__/
-tests/resources/logs/*.log
-tests/resources/reports/*.log
+resources/logs/*.log
+resources/reports/*

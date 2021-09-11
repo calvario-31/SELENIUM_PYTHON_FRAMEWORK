@@ -42,7 +42,7 @@ def get_logger():
     formatter = logging.Formatter("%(asctime)s %(levelname)5s [%(name)s] - %(message)s")
 
     stream_handler = logging.StreamHandler(sys.stdout)
-    file_handler = logging.FileHandler("./tests/resources/logs/appLog.log", mode='w', delay=False)
+    file_handler = logging.FileHandler("./resources/logs/appLog.log", mode='w', delay=False)
 
     file_handler.setFormatter(formatter)
     stream_handler.setFormatter(formatter)

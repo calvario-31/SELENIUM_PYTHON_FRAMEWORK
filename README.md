@@ -1,4 +1,4 @@
-# SeleniumPythonEx1
+# CompleteFramework
 To create virtual environment called "venv":
 
 virtualenv env
@@ -31,12 +31,12 @@ pip install -r requirements.txt
 
 ===============================================================
 
-rm -r ./tests/resources/reports/
+rm -r ./resources/reports/
 
 
 pytest -m ${tag_name} -v -s --browser=${browser} --alluredir= ${allure_report_path}
 
-pytest -m regression -v -s --browser=edge --alluredir=./tests/resources/reports/my-allure-results
+pytest -m regression -v -s --browser=edge --alluredir=./resources/reports/my-allure-results
 
 ===============================================================
 

@@ -1,12 +1,14 @@
 import pytest
+from selenium.webdriver.remote.webdriver import WebDriver
 
-from src.pageobjects.credentials.LoginPage import LoginPage
-from src.pageobjects.topmenu.TopMenuPage import TopMenuPage
+from pageobjects.credentials.LoginPage import LoginPage
+from pageobjects.topmenu.TopMenuPage import TopMenuPage
 
 
 class TestLogout:
     login_page: LoginPage
     top_menu_page: TopMenuPage
+    driver: WebDriver
 
     @pytest.mark.fail
     def test_logout(self):
