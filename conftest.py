@@ -22,6 +22,7 @@ def manage_driver(request):
     else:
         driver = build_local_driver(browser)
     request.cls.driver = driver
+    request.instance.init_pages()
     yield
     driver.quit()
 
