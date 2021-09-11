@@ -1,8 +1,8 @@
 import allure
 from selenium.webdriver.common.by import By
 
-from pageobjects.Page import Page
 import utilities.log_manager as log
+from pageobjects.Page import Page
 
 
 class TopMenuPage(Page):
@@ -29,7 +29,3 @@ class TopMenuPage(Page):
 
     def _wait_page_to_load(self):
         self._wait_visibility(self._burgerMenu)
-
-
-
-

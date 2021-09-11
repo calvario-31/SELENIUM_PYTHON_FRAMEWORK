@@ -1,8 +1,8 @@
 import allure
 from selenium.webdriver.common.by import By
 
-from pageobjects.Page import Page
 import utilities.log_manager as log
+from pageobjects.Page import Page
 
 
 class LoginPage(Page):

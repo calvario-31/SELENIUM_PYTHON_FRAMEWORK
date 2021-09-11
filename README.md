@@ -1,4 +1,5 @@
 # CompleteFramework
+
 To create virtual environment called "venv":
 
 virtualenv env
@@ -19,7 +20,7 @@ deactivate
 
 To delete virtual environment called "venv":
 
- rm -r venv/
+rm -r venv/
 
 ===============================================================
 
@@ -32,7 +33,6 @@ pip install -r requirements.txt
 ===============================================================
 
 rm -r ./resources/reports/
-
 
 pytest -m ${tag_name} -v -s --browser=${browser} --alluredir= ${allure_report_path}
 

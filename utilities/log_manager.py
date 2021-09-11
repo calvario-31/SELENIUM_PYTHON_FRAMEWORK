@@ -1,6 +1,6 @@
 import logging
 import sys
-
+from pathlib import Path
 
 log: logging.Logger
 
@@ -37,12 +37,14 @@ def end_test(status):
 
 
 def get_logger():
+    log_path = Path("resources/logs/appLog.log")
+
     logger = logging.getLogger("LOG")
 
     formatter = logging.Formatter("%(asctime)s %(levelname)5s [%(name)s] - %(message)s")
 
     stream_handler = logging.StreamHandler(sys.stdout)
-    file_handler = logging.FileHandler("./resources/logs/appLog.log", mode='w', delay=False)
+    file_handler = logging.FileHandler(log_path, mode='w', delay=False)
 
     file_handler.setFormatter(formatter)
     stream_handler.setFormatter(formatter)

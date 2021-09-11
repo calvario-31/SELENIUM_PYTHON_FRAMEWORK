@@ -50,7 +50,6 @@ def pytest_addoption(parser):
 
 @hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item):
-
     report = (yield).get_result()
     if report.when == "call":
         setattr(item, "report", report)
