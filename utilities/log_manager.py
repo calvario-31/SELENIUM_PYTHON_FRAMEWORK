@@ -55,6 +55,6 @@ def get_logger():
     logger.addHandler(file_handler)
     logger.addHandler(stream_handler)
 
-    logger.setLevel(logging.DEBUG)
+    logger.setLevel(logging.INFO)
 
     return logger
