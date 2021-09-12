@@ -14,11 +14,12 @@ browser_version: string
 operative_system: string
 os_version: string
 run_on_server: bool
+actual_test_name: string
 
 
 @fixture(scope="function", autouse=True)
 def manage_driver(request):
-    global driver
+    global driver, actual_test_name
 
     if run_on_server:
         driver = build_remote_driver(browser, browser_version, operative_system, os_version)
@@ -26,7 +27,8 @@ def manage_driver(request):
     else:
         driver = build_local_driver(browser)
 
-    log_manager.start_test(request.node.name)
+    actual_test_name = request.node.name.partition("[")[0]
+    log_manager.start_test(actual_test_name)
 
     request.cls.driver = driver
     request.instance.init_pages()
@@ -54,13 +56,12 @@ def pytest_addoption(parser):
 
 @hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item):
-    global driver, run_on_server
+    global driver, run_on_server, actual_test_name
     report = (yield).get_result()
     if report.when == "call":
         setattr(item, "report", report)
-        log_manager.end_test(report.outcome)
+        log_manager.end_test(report.outcome.upper())
         if run_on_server:
-            log_manager.log.debug("REPORT OUTCOME: " + report.outcome)
             if report.outcome == "passed":
                 write_test_status_passed(driver)
             elif report.outcome == "skipped":
