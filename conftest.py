@@ -19,12 +19,15 @@ run_on_server: bool
 @fixture(scope="function", autouse=True)
 def manage_driver(request):
     global driver
-    log_manager.start_test(request.node.name)
+
     if run_on_server:
         driver = build_remote_driver(browser, browser_version, operative_system, os_version)
+        write_test_name(driver, request.node.name)
     else:
         driver = build_local_driver(browser)
-    write_test_name(driver, request.node.name)
+
+    log_manager.start_test(request.node.name)
+
     request.cls.driver = driver
     request.instance.init_pages()
     yield
@@ -51,18 +54,19 @@ def pytest_addoption(parser):
 
 @hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item):
-    global driver
+    global driver, run_on_server
     report = (yield).get_result()
     if report.when == "call":
         setattr(item, "report", report)
-        log_manager.start_test(report.outcome)
-        log_manager.log.debug("REPORT OUTCOME: " + report.outcome)
-        if report.outcome == "PASSED":
-            write_test_status_passed(driver)
-        elif report.outcome == "SKIPPED":
-            write_test_status_skipped(driver)
-        elif report.outcome == "FAILED":
-            write_test_status_failed(driver)
+        log_manager.end_test(report.outcome)
+        if run_on_server:
+            log_manager.log.debug("REPORT OUTCOME: " + report.outcome)
+            if report.outcome == "passed":
+                write_test_status_passed(driver)
+            elif report.outcome == "skipped":
+                write_test_status_skipped(driver)
+            elif report.outcome == "failed":
+                write_test_status_failed(driver)
 
 
 @fixture(scope="function", autouse=True)
