@@ -41,6 +41,11 @@ def build_remote_driver(browser, browser_version, operative_system, os_version):
 
     remote_url = "https://{}:{}@hub-cloud.browserstack.com/wd/hub".format(username, access_key)
 
+    log.debug("browser: " + browser)
+    log.debug("browser_version: " + browser_version)
+    log.debug("operative_system: " + operative_system)
+    log.debug("os_version: " + os_version)
+
     capabilities = {
         'browser': browser,
         'browser_version': browser_version,
