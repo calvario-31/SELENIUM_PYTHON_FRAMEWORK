@@ -20,11 +20,11 @@ run_on_server: bool
 def manage_driver(request):
     global driver
     log_manager.start_test(request.node.name)
-    write_test_name(driver, request.node.name)
     if run_on_server:
         driver = build_remote_driver(browser, browser_version, operative_system, os_version)
     else:
         driver = build_local_driver(browser)
+    write_test_name(driver, request.node.name)
     request.cls.driver = driver
     request.instance.init_pages()
     yield
