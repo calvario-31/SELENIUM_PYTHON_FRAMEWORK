@@ -20,7 +20,7 @@ class LoginPage(Page):
 
     @allure.step("Login into the app with username: {1} and password: {2}")
     def login(self, username, password):
-        self._wait_page_to_load()
+        self._wait_to_load()
         log.info("Filling username input")
         log.debug("Username: " + username)
         self._find(self._username_input).send_keys(username)
@@ -33,7 +33,7 @@ class LoginPage(Page):
     @allure.step("Verifying the login page is displayed")
     def verify_page_is_displayed(self):
         log.info("Verifying the login page is displayed")
-        return self._element_is_visible(self._bot_image)
+        return self._element_is_displayed(self._bot_image)
 
-    def _wait_page_to_load(self):
+    def _wait_to_load(self):
         self._wait_visibility(self._bot_image)

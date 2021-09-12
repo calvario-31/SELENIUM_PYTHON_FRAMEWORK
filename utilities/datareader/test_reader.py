@@ -12,3 +12,7 @@ def get_standard_credentials():
 def get_shopping_list():
     excel_sheet = get_excel_sheet(excel_name, "itemData")
     return [get_all_rows(excel_sheet)]
+
+
+def get_sauce_labs_href():
+    return ["https://saucelabs.com/"]

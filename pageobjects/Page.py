@@ -1,4 +1,5 @@
 import traceback
+from abc import abstractmethod
 
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.remote.webdriver import WebDriver
@@ -19,7 +20,7 @@ class Page:
         wait: WebDriverWait = WebDriverWait(self._driver, time_out)
         return wait.until(expected_conditions.visibility_of_element_located(locator))
 
-    def _element_is_visible(self, locator, time_out=5):
+    def _element_is_displayed(self, locator, time_out=5):
         try:
             self._wait_visibility(locator, time_out)
             return True
@@ -29,3 +30,7 @@ class Page:
 
     def _go_to_index(self):
         self._driver.get(self._main_url)
+
+    @abstractmethod
+    def _wait_to_load(self):
+        pass

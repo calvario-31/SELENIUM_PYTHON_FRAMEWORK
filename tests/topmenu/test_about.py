@@ -3,23 +3,22 @@ from selenium.webdriver.remote.webdriver import WebDriver
 
 from pageobjects.credentials.LoginPage import LoginPage
 from pageobjects.topmenu.TopMenuPage import TopMenuPage
-from utilities.datareader.test_reader import get_standard_credentials
+from utilities.datareader.test_reader import get_standard_credentials, get_sauce_labs_href
 
 
-class TestLogout:
+class TestAbout:
+    driver: WebDriver
     login_page: LoginPage
     top_menu_page: TopMenuPage
-    driver: WebDriver
 
     @pytest.mark.regression
-    @pytest.mark.usefixtures("credentials")
-    def test_logout(self, credentials):
+    @pytest.mark.smoke
+    @pytest.mark.usefixtures("credentials", "href")
+    def test_about(self, credentials, href):
         self.login_page.go_to_index()
         self.login_page.login(credentials.get("username"), credentials.get("password"))
 
-        self.top_menu_page.logout()
-
-        assert self.login_page.verify_page_is_displayed() is True
+        assert self.top_menu_page.get_href_from_about() == href
 
     def init_pages(self):
         self.login_page = LoginPage(self.driver)
@@ -27,4 +26,8 @@ class TestLogout:
 
     @pytest.fixture(params=get_standard_credentials())
     def credentials(self, request):
+        return request.param
+
+    @pytest.fixture(params=get_sauce_labs_href())
+    def href(self, request):
         return request.param
