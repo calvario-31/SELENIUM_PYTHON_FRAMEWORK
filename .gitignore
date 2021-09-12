@@ -1,5 +1,4 @@
 .idea/
 __pycache__/
-*.log
-**/my-allure-results
-/resources/reports/my-allure-results/
+**/*.log
+**/my-allure-results/**

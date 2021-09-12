@@ -1,4 +1,5 @@
 import logging
+import os
 import sys
 from pathlib import Path
 
@@ -38,6 +39,8 @@ def end_test(status):
 
 def get_logger():
     log_path = Path("resources/logs/appLog.log")
+
+    os.makedirs(os.path.dirname("./resources/logs/appLog.log"), exist_ok=True)
 
     logger = logging.getLogger("LOG")
 
