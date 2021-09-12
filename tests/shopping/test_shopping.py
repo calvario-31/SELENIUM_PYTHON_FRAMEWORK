@@ -1,9 +1,9 @@
 import pytest
 from selenium.webdriver.remote.webdriver import WebDriver
 
+from pageobjects.checkout.DescriptionCheckoutPage import DescriptionCheckoutPage
 from pageobjects.checkout.InformationCheckoutPage import InformationCheckoutPage
 from pageobjects.checkout.OverviewCheckoutPage import OverviewCheckoutPage
-from pageobjects.checkout.DescriptionCheckoutPage import DescriptionCheckoutPage
 from pageobjects.checkout.SuccessShoppingPage import SuccessShoppingPage
 from pageobjects.credentials.LoginPage import LoginPage
 from pageobjects.shopping.DetailItemPage import DetailItemPage
@@ -47,11 +47,9 @@ class TestShopping:
                                                  user_data.get("zipcode"))
 
         assert self.overview_checkout_page.get_total_price() == total_sum
-
         self.overview_checkout_page.finish_checkout()
 
         assert self.success_shopping_page.title_is_displayed()
-
         self.success_shopping_page.back_to_home()
 
         assert self.shopping_page.title_is_displayed()

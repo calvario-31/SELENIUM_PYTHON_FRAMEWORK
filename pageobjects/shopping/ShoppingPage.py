@@ -1,7 +1,7 @@
 import allure
 from selenium.webdriver.common.by import By
-import utilities.log_manager as log
 
+import utilities.log_manager as log
 from pageobjects.Page import Page
 
 

@@ -10,6 +10,7 @@ class LoginPage(Page):
     _password_input = (By.ID, "password")
     _login_button = (By.ID, "login-button")
     _bot_image = (By.CLASS_NAME, "bot_column")
+    _error_message = (By.CSS_SELECTOR, "h3[data-test='error']")
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -31,9 +32,14 @@ class LoginPage(Page):
         self._find(self._login_button).click()
 
     @allure.step("Verifying the login page is displayed")
-    def verify_page_is_displayed(self):
+    def page_is_displayed(self):
         log.info("Verifying the login page is displayed")
         return self._element_is_displayed(self._bot_image)
+
+    @allure.step("Verifying error message is displayed")
+    def error_message_is_displayed(self):
+        log.info("Verifying error message is displayed")
+        return self._element_is_displayed(self._error_message)
 
     def _wait_to_load(self):
         self._wait_visibility(self._bot_image)

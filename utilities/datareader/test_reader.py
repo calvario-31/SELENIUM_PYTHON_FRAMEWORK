@@ -9,6 +9,11 @@ def get_standard_credentials():
     return [get_dictionary_from_key(excel_sheet, "valid")]
 
 
+def get_locked_out_credentials():
+    excel_sheet = get_excel_sheet(excel_name, "credentials")
+    return [get_dictionary_from_key(excel_sheet, "locked")]
+
+
 def get_shopping_list():
     excel_sheet = get_excel_sheet(excel_name, "itemData")
     return [get_all_rows(excel_sheet)]

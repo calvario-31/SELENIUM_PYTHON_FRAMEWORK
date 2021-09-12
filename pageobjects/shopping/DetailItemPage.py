@@ -1,8 +1,6 @@
-import string
-from decimal import Decimal
-
 import allure
 from selenium.webdriver.common.by import By
+
 import utilities.log_manager as log
 from pageobjects.Page import Page
 
@@ -27,4 +25,3 @@ class DetailItemPage(Page):
 
     def _wait_to_load(self):
         self._wait_visibility(self._back_to_products_button)
-

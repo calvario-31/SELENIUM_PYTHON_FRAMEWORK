@@ -20,7 +20,7 @@ class TestLogout:
 
         self.top_menu_page.logout()
 
-        assert self.login_page.verify_page_is_displayed() is True
+        assert self.login_page.page_is_displayed() is True
 
     def init_pages(self):
         self.login_page = LoginPage(self.driver)

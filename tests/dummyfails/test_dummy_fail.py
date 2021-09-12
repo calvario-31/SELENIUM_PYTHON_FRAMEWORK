@@ -15,7 +15,7 @@ class TestLogout:
         self.login_page.go_to_index()
         self.login_page.login("standard_user", "secret_sauce")
 
-        assert self.login_page.verify_page_is_displayed() is True
+        assert self.login_page.page_is_displayed() is True
 
     def init_pages(self):
         self.login_page = LoginPage(self.driver)
