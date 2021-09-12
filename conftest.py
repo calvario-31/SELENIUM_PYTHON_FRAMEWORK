@@ -34,9 +34,9 @@ def manage_driver(request):
 def manage_session(request):
     global browser, run_on_server, browser_version, os_version, operative_system
     browser = request.config.getoption("--browser")
-    browser_version = request.config.getoption("--browser")
-    operative_system = request.config.getoption("--browser")
-    os_version = request.config.getoption("--browser")
+    browser_version = request.config.getoption("--browser_version")
+    operative_system = request.config.getoption("--operative_system")
+    os_version = request.config.getoption("--os_version")
     run_on_server = os.environ.get("JOB_NAME")
     log_manager.log = log_manager.get_logger()
 
