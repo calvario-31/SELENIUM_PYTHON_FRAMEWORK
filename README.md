@@ -32,14 +32,14 @@ pip install -r requirements.txt
 
 ===============================================================
 
-rm -r ./resources/reports/
+pytest -m ${tag_name} --browser=${browser}
 
-pytest -m ${tag_name} -v -s --browser=${browser} --alluredir= ${allure_report_path}
+pytest -m regression --browser=edge
 
-pytest -m regression -v -s --browser=edge --alluredir=./resources/reports/my-allure-results
+**if no browser then it will run chrome by default
 
 ===============================================================
 
 To see allure results:
 
-allure serve ./tests/resources/reports/
+allure serve resources/reports/my-allure-results/
