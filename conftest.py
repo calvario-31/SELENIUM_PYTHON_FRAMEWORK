@@ -1,12 +1,18 @@
 import os
 import string
+from os import path
+from typing import Any, Callable, Optional
 
 from _pytest.config import hookimpl
-from _pytest.fixtures import fixture
+from _pytest.fixtures import SubRequest
+from pytest import fixture
 
 import utilities.log_manager as log_manager
 from utilities.browserstack_scripts import *
 from utilities.driver_manager import build_remote_driver, build_local_driver, take_screenshot
+
+ALLURE_ENVIRONMENT_PROPERTIES_FILE = 'environment.properties'
+ALLUREDIR_OPTION = '--alluredir'
 
 driver: WebDriver
 browser: string
@@ -76,3 +82,34 @@ def test_failed_check(request):
     if request.node.report:
         if request.node.report.failed:
             take_screenshot(driver)
+
+
+@fixture(autouse=True)
+def write_env_properties(add_allure_environment_property: Callable) -> None:
+    global browser, browser_version, operative_system, os_version
+    add_allure_environment_property('operative_system', operative_system)
+    add_allure_environment_property('os_version', os_version)
+    add_allure_environment_property('browser', browser)
+    add_allure_environment_property('browser_version', browser_version)
+
+
+@fixture(scope='session', autouse=True)
+def add_allure_environment_property(request: SubRequest) -> Optional[Callable]:
+
+    environment_properties = dict()
+
+    def maker(key: str, value: Any):
+        environment_properties.update({key: value})
+
+    yield maker
+
+    alluredir = request.config.getoption(ALLUREDIR_OPTION)
+
+    if not alluredir or not path.isdir(alluredir) or not environment_properties:
+        return
+
+    allure_env_path = path.join(alluredir, ALLURE_ENVIRONMENT_PROPERTIES_FILE)
+
+    with open(allure_env_path, 'w') as _f:
+        data = '\n'.join([f'{variable}={value}' for variable, value in environment_properties.items()])
+        _f.write(data)
