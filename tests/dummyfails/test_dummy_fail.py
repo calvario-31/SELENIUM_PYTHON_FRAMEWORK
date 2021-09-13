@@ -1,3 +1,4 @@
+import allure
 import pytest
 from selenium.webdriver.remote.webdriver import WebDriver
 
@@ -11,6 +12,10 @@ class TestLogout:
     driver: WebDriver
 
     @pytest.mark.fail
+    @allure.title("Test dummy fail")
+    @allure.description("Verify the screenshot functionality on the allure report")
+    @allure.issue("8dvc3IEV", "Bug")
+    @allure.severity(allure.severity_level.TRIVIAL)
     def test_logout(self):
         self.login_page.go_to_index()
         self.login_page.login("standard_user", "secret_sauce")

@@ -26,6 +26,7 @@ actual_test_name: string
 @fixture(scope="function", autouse=True)
 def manage_driver(request):
     global driver, actual_test_name
+    actual_test_name = request.node.name.partition("[")[0]
 
     if run_on_server:
         driver = build_remote_driver(browser, browser_version, operative_system, os_version)
@@ -33,7 +34,6 @@ def manage_driver(request):
     else:
         driver = build_local_driver(browser)
 
-    actual_test_name = request.node.name.partition("[")[0]
     log_manager.start_test(actual_test_name)
 
     request.cls.driver = driver

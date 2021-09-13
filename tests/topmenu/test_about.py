@@ -1,3 +1,4 @@
+import allure
 import pytest
 from selenium.webdriver.remote.webdriver import WebDriver
 
@@ -14,6 +15,10 @@ class TestAbout:
     @pytest.mark.regression
     @pytest.mark.smoke
     @pytest.mark.usefixtures("credentials", "href")
+    @allure.title("Test about redirection")
+    @allure.description("Verify the about option redirection functionality")
+    @allure.testcase("moriaEyr", "Test case")
+    @allure.severity(allure.severity_level.NORMAL)
     def test_about(self, credentials, href):
         self.login_page.go_to_index()
         self.login_page.login(credentials.get("username"), credentials.get("password"))

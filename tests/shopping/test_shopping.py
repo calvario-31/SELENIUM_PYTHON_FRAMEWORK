@@ -1,3 +1,4 @@
+import allure
 import pytest
 from selenium.webdriver.remote.webdriver import WebDriver
 
@@ -26,6 +27,10 @@ class TestShopping:
 
     @pytest.mark.regression
     @pytest.mark.usefixtures("credentials", "shopping_list", "user_data")
+    @allure.title("Test shopping")
+    @allure.description("Verify the shopping e2e functionality")
+    @allure.testcase("2E5cHwYs", "Test case")
+    @allure.severity(allure.severity_level.CRITICAL)
     def test_shopping(self, credentials, shopping_list, user_data):
         self.login_page.go_to_index()
         self.login_page.login(credentials.get("username"), credentials.get("password"))

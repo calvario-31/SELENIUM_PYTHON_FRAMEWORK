@@ -1,3 +1,4 @@
+import allure
 import pytest
 from selenium.webdriver.remote.webdriver import WebDriver
 
@@ -11,6 +12,11 @@ class TestLockedOutUser:
 
     @pytest.mark.regression
     @pytest.mark.smoke
+    @pytest.mark.usefixtures("credentials")
+    @allure.title("Test locked out user")
+    @allure.description("Verify the error message when login as a locked user")
+    @allure.testcase("2QtPrEKU", "Test case")
+    @allure.severity(allure.severity_level.TRIVIAL)
     def test_locked_out_user(self, credentials):
         self.login_page.go_to_index()
         self.login_page.login(credentials.get("username"), credentials.get("password"))

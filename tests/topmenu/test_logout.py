@@ -1,3 +1,4 @@
+import allure
 import pytest
 from selenium.webdriver.remote.webdriver import WebDriver
 
@@ -14,6 +15,10 @@ class TestLogout:
     @pytest.mark.regression
     @pytest.mark.smoke
     @pytest.mark.usefixtures("credentials")
+    @allure.title("Test logout")
+    @allure.description("Verify the logout functionality")
+    @allure.testcase("ksBWkBLx", "Test case")
+    @allure.severity(allure.severity_level.BLOCKER)
     def test_logout(self, credentials):
         self.login_page.go_to_index()
         self.login_page.login(credentials.get("username"), credentials.get("password"))
