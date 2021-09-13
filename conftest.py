@@ -30,7 +30,7 @@ def manage_driver(request):
 
     if run_on_server:
         driver = build_remote_driver(browser, browser_version, operative_system, os_version)
-        write_test_name(driver, request.node.name)
+        write_test_name(driver, actual_test_name)
     else:
         driver = build_local_driver(browser)
 
