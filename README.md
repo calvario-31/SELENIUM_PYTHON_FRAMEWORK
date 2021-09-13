@@ -43,3 +43,13 @@ pytest -m regression --browser=edge
 To see allure results:
 
 allure serve resources/reports/my-allure-results/
+
+===============================================================
+
+Jenkins shell script:
+
+virtualenv venv
+source venv/bin/activate
+pip install -r requirements.txt
+pytest -m ${group} --operative_system="${operative_system}" --os_version="${os_version}" --browser=${browser} --browser_version=${browser_version}
+deactivate
