@@ -57,7 +57,7 @@ class TestShopping:
         assert self.success_shopping_page.title_is_displayed()
         self.success_shopping_page.back_to_home()
 
-        assert self.shopping_page.title_is_displayed()
+        assert self.shopping_page.shopping_page_is_displayed()
 
     def init_pages(self):
         self.login_page = LoginPage(self.driver)

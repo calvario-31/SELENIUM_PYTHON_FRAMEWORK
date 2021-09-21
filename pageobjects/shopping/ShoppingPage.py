@@ -9,7 +9,7 @@ class ShoppingPage(Page):
     _title = (By.CLASS_NAME, "title")
 
     @allure.step("Verifying the title is displayed")
-    def title_is_displayed(self):
+    def shopping_page_is_displayed(self):
         log.info("Verifying the title is displayed")
         return self._element_is_displayed(self._title)
 
