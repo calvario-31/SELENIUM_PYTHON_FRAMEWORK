@@ -17,7 +17,7 @@ def build_local_driver(browser):
         driver = webdriver.Chrome(ChromeDriverManager().install())
     elif browser == "firefox":
         log.info("Starting firefox")
-        driver = webdriver.Firefox(GeckoDriverManager().install())
+        driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
     elif browser == "edge":
         log.info("Starting edge")
         driver = webdriver.Edge(EdgeChromiumDriverManager().install())
