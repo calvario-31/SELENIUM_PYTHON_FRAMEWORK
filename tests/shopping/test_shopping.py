@@ -25,21 +25,20 @@ class TestShopping:
     overview_checkout_page: OverviewCheckoutPage
     success_shopping_page: SuccessShoppingPage
 
-    @pytest.mark.regression
-    @pytest.mark.usefixtures("credentials", "shopping_list", "user_data")
     @allure.title("Test shopping")
     @allure.description("Verify the shopping e2e functionality")
     @allure.testcase("2E5cHwYs", "Test case")
     @allure.severity(allure.severity_level.CRITICAL)
+    @pytest.mark.regression
     def test_shopping(self, credentials, shopping_list, user_data):
         self.login_page.go_to_index()
-        self.login_page.login(credentials.get("username"), credentials.get("password"))
+        self.login_page.login(credentials["username"], credentials["password"])
 
         total_sum = 0.0
         for item_to_buy in shopping_list:
-            self.shopping_page.go_to_item_detail(item_to_buy.get("itemName"))
+            self.shopping_page.go_to_item_detail(item_to_buy["itemName"])
             price = self.detail_item_page.add_to_cart()
-            assert item_to_buy.get("price") == price
+            assert item_to_buy["price"] == price
             total_sum += price
 
         assert self.top_menu_page.get_item_count() == len(shopping_list)
@@ -48,8 +47,8 @@ class TestShopping:
 
         self.description_checkout_page.continue_checkout()
 
-        self.information_checkout_page.fill_form(user_data.get("firstname"), user_data.get("lastname"),
-                                                 user_data.get("zipcode"))
+        self.information_checkout_page.fill_form(user_data["firstname"], user_data["lastname"],
+                                                 user_data["zipcode"])
 
         assert self.overview_checkout_page.get_total_price() == total_sum
         self.overview_checkout_page.finish_checkout()

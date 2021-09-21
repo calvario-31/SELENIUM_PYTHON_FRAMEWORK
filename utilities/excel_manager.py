@@ -20,7 +20,7 @@ def get_dictionary_from_key(excel_sheet, key_name):
 
 def get_all_rows(excel_sheet):
     rows_list = []
-    for i in range(2, excel_sheet.max_row + 1):
+    for i in range(2, excel_sheet.max_row):
         dictionary_row = {}
         for j in range(1, excel_sheet.max_column):
             dictionary_row[excel_sheet.cell(row=1, column=j).value] = excel_sheet.cell(row=i, column=j).value

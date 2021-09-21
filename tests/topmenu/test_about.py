@@ -12,16 +12,15 @@ class TestAbout:
     login_page: LoginPage
     top_menu_page: TopMenuPage
 
-    @pytest.mark.regression
-    @pytest.mark.smoke
-    @pytest.mark.usefixtures("credentials", "href")
     @allure.title("Test about redirection")
     @allure.description("Verify the about option redirection functionality")
     @allure.testcase("moriaEyr", "Test case")
     @allure.severity(allure.severity_level.NORMAL)
+    @pytest.mark.regression
+    @pytest.mark.smoke
     def test_about(self, credentials, href):
         self.login_page.go_to_index()
-        self.login_page.login(credentials.get("username"), credentials.get("password"))
+        self.login_page.login(credentials["username"], credentials["password"])
 
         assert self.top_menu_page.get_href_from_about() == href
 
